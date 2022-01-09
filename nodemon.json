@@ -1,0 +1,4 @@
+{
+    "exec": "sucrase-node src/server.ts",
+    "ext": "js, json, ts, .env"
+}
