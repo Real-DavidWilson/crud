@@ -1,6 +1,5 @@
 {
     "include": ["src/server.ts"],
-    "exclude": ["node_modules/**/*"],
     "compilerOptions": {
         "allowJs": true,
         "checkJs": false,
@@ -8,6 +7,7 @@
         "types": ["node"],
         "target": "ES6",
         "moduleResolution": "node",
+        "module": "CommonJS",
         "outDir": "dist",
     },
 }
