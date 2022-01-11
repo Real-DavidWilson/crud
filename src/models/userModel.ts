@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-interface UserDTO {
-    name: string;
+export interface UserDTO {
     email: string;
+    name: string;
     password: string;
 }
 

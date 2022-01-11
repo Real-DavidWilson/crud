@@ -10,7 +10,7 @@ checkEnv("DATABASE_URI", true);
 const config = {
     app: {
         port: parseInt(process.env.PORT) || 3000,
-        bcryptRounds: process.env.BCRYPT_ROUNDS || 10,
+        bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS) || 10,
         jwtSecret: process.env.JWT_SECRET,
     },
     database: {
