@@ -4,43 +4,43 @@ export enum SERVICE_ERRORS_CODE {
     NOT_FOUND,
 }
 
-interface ServiceErrorPayload {
+interface ServiceErrordata {
     message: string;
     code?: SERVICE_ERRORS_CODE;
 }
 
-type ServiceErrorType<T extends object = ServiceErrorPayload> =
-    T extends ServiceErrorPayload
-        ? ServiceErrorPayload
-        : T & ServiceErrorPayload;
+type ServiceErrorType<T extends object = ServiceErrordata> =
+    T extends ServiceErrordata
+        ? ServiceErrordata
+        : T & ServiceErrordata;
 
 export class ServiceError<
-    T extends object = ServiceErrorPayload
+    T extends object = ServiceErrordata
 > extends Error {
-    #payload: ServiceErrorType<T>;
+    #data: ServiceErrorType<T>;
 
-    constructor(payload: string | ServiceErrorType<T>) {
-        super(typeof payload === "string" ? payload : payload.message);
-        if (typeof payload === "object") this.#payload = payload;
+    constructor(data: string | ServiceErrorType<T>) {
+        super(typeof data === "string" ? data : data.message);
+        if (typeof data === "object") this.#data = data;
         else
-            this.#payload = {
-                message: payload,
+            this.#data = {
+                message: data,
                 code: SERVICE_ERRORS_CODE.UKNOWN,
             } as ServiceErrorType<T>;
     }
 
-    get payload() {
-        return this.#payload;
+    get data() {
+        return this.#data;
     }
 
     get code() {
-        return this.payload.code
+        return this.data.code
     }
 
 }
 
-const createServiceError = <T extends object = ServiceErrorPayload>(
-    payload: string | ServiceErrorType<T>
-) => new ServiceError(payload);
+const createServiceError = <T extends object = ServiceErrordata>(
+    data: string | ServiceErrorType<T>
+) => new ServiceError(data);
 
 export default createServiceError;
