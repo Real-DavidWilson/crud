@@ -9,7 +9,7 @@ interface AuthDTO {
     password: string;
 }
 
-export async function authUser(data: AuthDTO, user: UserDTO) {
+export async function signIn(data: AuthDTO, user: UserDTO) {
     try {
         if (!(await compare(data.password, user.password))) 
             throw new Error("Invalid user");
