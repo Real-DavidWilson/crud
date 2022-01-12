@@ -22,18 +22,21 @@ export async function register({ email, name, password }: UserDTO) {
     const user = new UserModel({ email, name, password: hash });
     const { _id: userid } = await user.save();
 
-    const token = jwt.sign({ userid }, config.app.jwtSecret, {
-        expiresIn: "12h",
-    });
-
-    return { userid: user._id, token };
+    return { userid };
 }
 
 export async function userExists(email: string) {
     try {
         return !!(await UserModel.findOne({ email }));
     } catch (err) {
-        console.error(err);
         throw err;
+    }
+}
+
+export async function updateUser(userid: string, user: UserDTO) {
+    try {
+
+    } catch (er){
+        
     }
 }
